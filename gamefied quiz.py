@@ -4,8 +4,6 @@ import secrets
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(32)
 
-# ====== DATA STORAGE ======
-# Quiz data
 questions = [
     "What is a programming language?",
     "Which of the following is a programming language?",
@@ -24,15 +22,11 @@ options = [
 
 answers = ["B", "B", "B", "B", "B"]
 
-# Student score records (temporary in memory)
 student_scores = []
 
-# Admin credentials
 ADMIN_USERNAME = "admin"
 ADMIN_PASSWORD = "secure123"
 
-
-# ====== HTML UI STYLES ======
 CSS = """
 <style>
 body {
@@ -73,11 +67,9 @@ a:hover { text-decoration: underline; }
 </style>
 """
 
-# ====== HELPER HTML ======
 def layout(title, body):
     return f"<html><head><title>{title}</title>{CSS}</head><body><div class='container'>{body}</div></body></html>"
 
-# ====== ROUTES ======
 @app.route('/')
 def home():
     session.clear()
@@ -138,7 +130,6 @@ def results():
     name = session.get('student_name', 'Unknown')
     score = session.get('score', 0)
     percent = int(score / len(questions) * 100)
-    # save record
     student_scores.append({'name': name, 'score': percent})
     html = f"""
     <h2>Quiz Completed!</h2>
@@ -147,7 +138,6 @@ def results():
     """
     return layout("Results", html)
 
-# ====== ADMIN SECTION ======
 @app.route('/admin', methods=['GET', 'POST'])
 def admin_login():
     if request.method == 'POST':
@@ -172,7 +162,6 @@ def admin_panel():
     if not session.get('admin'):
         return redirect(url_for('admin_login'))
     
-    # Student records table
     students_html = ""
     if student_scores:
         students_html = "<table border='1' cellpadding='6' style='margin:auto;'><tr><th>Student Name</th><th>Score (%)</th></tr>"
@@ -230,6 +219,5 @@ def admin_logout():
     session.pop('admin', None)
     return redirect(url_for('home'))
 
-# ====== RUN ======
 if __name__ == '__main__':
     app.run(debug=True)
