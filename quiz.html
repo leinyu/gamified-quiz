@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Quiz App — All in One</title>
 
-<!-- Font -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -29,13 +28,11 @@ body{
   padding:28px;
 }
 
-/* container */
 .app {
   width:100%;
   max-width:920px;
 }
 
-/* card */
 .card{
   background:var(--card);
   border-radius:14px;
@@ -44,7 +41,6 @@ body{
   margin-bottom:18px;
 }
 
-/* centered start screen */
 .center {
   display:flex;
   flex-direction:column;
@@ -55,7 +51,6 @@ body{
 }
 h1 { margin:0 0 18px; font-size:28px; font-weight:700; color:#fff; }
 
-/* input / buttons */
 .input{
   width:320px; max-width:92%;
   padding:12px 14px;
@@ -80,7 +75,6 @@ h1 { margin:0 0 18px; font-size:28px; font-weight:700; color:#fff; }
 .btn.secondary{ background:rgba(255,255,255,0.06); color:#fff; font-weight:600; }
 .btn.warn{ background:#ff5b5b; color:#fff; }
 
-/* top-right settings */
 .settings-toggle{
   position:fixed; top:20px; right:20px;
   width:52px; height:52px; border-radius:12px; border:none;
@@ -89,7 +83,6 @@ h1 { margin:0 0 18px; font-size:28px; font-weight:700; color:#fff; }
   box-shadow:0 10px 30px rgba(41,57,255,0.12);
 }
 
-/* settings panel */
 .settings-panel{
   position:fixed; top:88px; right:20px; z-index:2000;
   background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.03));
@@ -101,15 +94,12 @@ h1 { margin:0 0 18px; font-size:28px; font-weight:700; color:#fff; }
 .setting-row label{ color:var(--muted); font-weight:600; font-size:14px; }
 .select, .input-sm{ padding:8px 10px; border-radius:8px; background:rgba(0,0,0,0.35); color:#fff; border:1px solid rgba(255,255,255,0.04); }
 
-/* pages */
 .page{ display:none; }
 .page.active{ display:block; }
 
-/* quiz */
 .progress-bar{ height:12px; background:rgba(255,255,255,0.04); border-radius:999px; overflow:hidden; margin:10px 0 16px; }
 .progress-fill{ height:100%; width:0%; background:linear-gradient(90deg,var(--accent1),var(--accent2)); transition:width 400ms ease; }
 
-/* question card */
 .q-card{ background:rgba(255,255,255,0.02); padding:18px; border-radius:12px; margin-bottom:12px; border:1px solid rgba(255,255,255,0.02); }
 .q-title{ font-weight:700; margin-bottom:10px; font-size:18px; color:#fff }
 .options{ display:flex; flex-direction:column; gap:8px; }
@@ -120,27 +110,22 @@ h1 { margin:0 0 18px; font-size:28px; font-weight:700; color:#fff; }
 .option input{ transform:scale(1.05); margin-right:6px }
 .option:hover{ transform: translateY(-3px); box-shadow:0 10px 30px rgba(0,0,0,0.4) }
 
-/* results */
 .result-row{ display:flex; justify-content:space-between; align-items:center; gap:8px; margin:6px 0; }
 
-/* admin */
 .admin-grid{ display:flex; gap:14px; flex-wrap:wrap; }
 .admin-left{ flex:2; min-width:280px }
 .admin-right{ flex:1; min-width:220px }
 
-/* admin question block */
 .admin-q{ background:rgba(255,255,255,0.02); padding:12px; border-radius:10px; margin-bottom:10px; border:1px solid rgba(255,255,255,0.03); }
 .admin-q .row{ display:flex; gap:8px; margin-top:8px; }
 .small{ font-size:13px; color:var(--muted) }
 hr{ border:none; border-top:1px solid rgba(255,255,255,0.03); margin:12px 0 }
 
-/* theme variations (simple) */
 body.theme-cartoon{ background:linear-gradient(135deg,#fff2b8,#ffd07a); color:#111 }
 body.theme-christmas{ background:linear-gradient(135deg,#8bd3dd,#5dd6a6); color:#04251a }
 body.theme-horror{ background:linear-gradient(135deg,#2b1b3a,#6b1b2a); color:#fff }
 body.theme-sci-fi{ background:linear-gradient(135deg,#071829,#0f2a44); color:#8df7ff }
 
-/* responsive */
 @media (max-width:760px){
   .admin-grid{ flex-direction:column }
   .settings-panel{ right:12px; left:12px; width:auto }
@@ -189,7 +174,6 @@ body.theme-sci-fi{ background:linear-gradient(135deg,#071829,#0f2a44); color:#8d
       </div>
     </section>
 
-    <!-- QUIZ PAGE (one question at a time) -->
     <section id="page-quiz" class="page">
       <div class="card">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
@@ -219,7 +203,6 @@ body.theme-sci-fi{ background:linear-gradient(135deg,#071829,#0f2a44); color:#8d
       </div>
     </section>
 
-    <!-- RESULTS PAGE -->
     <section id="page-results" class="page">
       <div class="card">
         <h2>Results</h2>
@@ -232,7 +215,6 @@ body.theme-sci-fi{ background:linear-gradient(135deg,#071829,#0f2a44); color:#8d
       </div>
     </section>
 
-    <!-- ADMIN (login & panel in same page) -->
     <section id="page-admin" class="page">
       <div class="card" id="adminLoginCard">
         <h2>Admin Login</h2>
@@ -295,13 +277,11 @@ body.theme-sci-fi{ background:linear-gradient(135deg,#071829,#0f2a44); color:#8d
   </main>
 
 <script>
-/* ---------------- Persistence keys and defaults ---------------- */
 const KEY_Q = 'quiz_questions_v2';
 const KEY_S = 'quiz_students_v2';
 const KEY_THEME = 'quiz_theme_v2';
 const KEY_SOUND = 'quiz_sound_v2';
 
-/* default 5 questions (your specified ones) */
 const defaultQuestions = [
   { id: 1, category:'Programming', q:'What is a programming language?', A:'A type of computer hardware', B:'A way to communicate with a computer using code', C:'A social media app', D:'A computer virus', correct:'B' },
   { id: 2, category:'Programming', q:'Which of the following is a programming language?', A:'HTML', B:'Python', C:'Google', D:'Excel', correct:'B' },
@@ -316,7 +296,6 @@ let currentIndex = 0;
 let currentStudent = '';
 let answers = [];
 
-/* ---------- helpers ---------- */
 function load(key, fallback){
   try{
     const raw = localStorage.getItem(key);
@@ -325,10 +304,8 @@ function load(key, fallback){
 }
 function save(key, value){ localStorage.setItem(key, JSON.stringify(value)); }
 
-/* escape helper */
 function esc(s){ return (s==null)?'':String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-/* ---------- UI shortcuts ---------- */
 const pages = {
   home: document.getElementById('page-home'),
   quiz: document.getElementById('page-quiz'),
@@ -340,7 +317,6 @@ function showPage(name){
   if(pages[name]) pages[name].classList.add('active');
 }
 
-/* ---------- Settings UI ---------- */
 const settingsToggle = document.getElementById('settingsToggle');
 const settingsPanel = document.getElementById('settingsPanel');
 const saveSettingsBtn = document.getElementById('saveSettingsBtn');
@@ -362,20 +338,16 @@ saveSettingsBtn.addEventListener('click', ()=>{
   alert('Settings saved');
 });
 
-/* open admin page from settings */
 openAdminFromSettings.addEventListener('click', ()=> {
   settingsPanel.style.display = 'none';
   showPage('admin');
 });
 
-/* apply theme from storage */
 applyTheme(localStorage.getItem(KEY_THEME) || 'default');
 function applyTheme(t){
-  // body theme classes are like theme-cartoon, theme-christmas etc
   document.body.className = (t && t !== 'default') ? `theme-${t}` : '';
 }
 
-/* ---------- HOME -> Start ---------- */
 document.getElementById('startBtn').addEventListener('click', ()=>{
   const name = document.getElementById('inputName').value.trim();
   if(!name){ alert('Please enter your name'); return; }
@@ -387,7 +359,6 @@ document.getElementById('startBtn').addEventListener('click', ()=>{
   showPage('quiz');
 });
 
-/* ---------- Quiz flow (one question at a time) ---------- */
 const qTitle = document.getElementById('qTitle');
 const qOptions = document.getElementById('qOptions');
 const progressFill = document.getElementById('progressFill');
@@ -407,58 +378,47 @@ function showQuestion(index){
     const label = document.createElement('label');
     label.className = 'option';
     label.innerHTML = `<input type="radio" name="choice" value="${opt}"> <span style="font-weight:600;margin-right:8px">${opt}.</span> ${esc(q[opt])}`;
-    // restore if previously answered
     qOptions.appendChild(label);
   });
 
-  // restore chosen answer if any
   const chosen = answers[index] || null;
   if(chosen){
     const node = qOptions.querySelector(`input[value="${chosen}"]`);
     if(node) node.checked = true;
   }
 
-  // progress
   const pct = Math.round(((index)/questions.length)*100);
   progressFill.style.width = `${Math.round(((index+1)/questions.length)*100)}%`;
   progressText.textContent = `${index+1} / ${questions.length}`;
 
-  // prev/next visibility and text
   prevBtn.style.display = (index>0)?'inline-flex':'none';
   nextBtn.textContent = (index === questions.length-1) ? 'Submit' : 'Next';
 }
 
-/* prev button */
 prevBtn.addEventListener('click', ()=>{
   saveCurrentSelection();
   if(currentIndex>0){ currentIndex--; showQuestion(currentIndex); }
 });
 
-/* next/submit button */
 nextBtn.addEventListener('click', ()=>{
   saveCurrentSelection();
   if(currentIndex < questions.length-1){
     currentIndex++;
     showQuestion(currentIndex);
   } else {
-    // submit quiz
     finishQuiz();
   }
 });
 
-/* save current radio choice to answers array */
 function saveCurrentSelection(){
   const sel = qOptions.querySelector('input[name="choice"]:checked');
   const val = sel ? sel.value : null;
   answers[currentIndex] = val;
 }
 
-/* finish quiz -> compute score */
 function finishQuiz(){
-  // ensure saving last selection
   saveCurrentSelection();
 
-  // compute
   let correctCount = 0;
   const detailed = [];
   questions.forEach((q, idx)=>{
@@ -468,13 +428,11 @@ function finishQuiz(){
   });
   const pct = Math.round((correctCount / questions.length) * 100);
 
-  // save student (overwrite if exists)
   const existingIndex = students.findIndex(s=>s.name === currentStudent);
   const record = { name: currentStudent, score: pct, correct: correctCount, total: questions.length, date: new Date().toISOString() };
   if(existingIndex >= 0) students[existingIndex] = record; else students.push(record);
   save(KEY_S, students);
 
-  // show results UI
   document.getElementById('resultsScore').innerHTML = `<strong>${esc(currentStudent)}</strong> — ${pct}% (${correctCount}/${questions.length})`;
   document.getElementById('resultsDetails').textContent = `Answered: ${answers.filter(a=>a).length} / ${questions.length}`;
   const answersList = document.getElementById('answersList');
@@ -487,18 +445,15 @@ function finishQuiz(){
     answersList.appendChild(div);
   });
 
-  // reset quiz state
   currentIndex = 0;
   answers = [];
   showPage('results');
 }
 
-/* go home */
 document.getElementById('homeBtn').addEventListener('click', ()=>{
   showPage('home');
 });
 
-/* ---------- ADMIN ---------- */
 const adminLoginBtn = document.getElementById('adminLoginBtn');
 const adminCancelBtn = document.getElementById('adminCancelBtn');
 const adminPanelCard = document.getElementById('adminPanelCard');
@@ -508,7 +463,6 @@ adminLoginBtn.addEventListener('click', ()=>{
   const user = document.getElementById('adminUser').value.trim();
   const pass = document.getElementById('adminPass').value;
   if(user === 'admin' && pass === 'secure123'){
-    // success
     adminLoginCard.style.display = 'none';
     adminPanelCard.style.display = 'block';
     renderAdminQuestions();
@@ -525,7 +479,6 @@ document.getElementById('logoutAdminBtn').addEventListener('click', ()=>{
   showPage('home');
 });
 
-/* Render admin question list (editable inline) */
 function renderAdminQuestions(){
   const container = document.getElementById('adminQuestions');
   container.innerHTML = '';
@@ -563,7 +516,6 @@ function renderAdminQuestions(){
   });
 }
 
-/* Save edited question */
 function saveAdminQuestion(id){
   const q = questions.find(x=>x.id===id);
   if(!q) return alert('Not found');
@@ -579,7 +531,6 @@ function saveAdminQuestion(id){
   renderAdminQuestions();
 }
 
-/* Remove question */
 function removeQuestion(id){
   if(!confirm('Remove question?')) return;
   questions = questions.filter(q=>q.id!==id);
@@ -587,7 +538,6 @@ function removeQuestion(id){
   renderAdminQuestions();
 }
 
-/* add new question */
 document.getElementById('addQBtn').addEventListener('click', ()=>{
   const cat = document.getElementById('addCat').value.trim() || 'General';
   const qtext = document.getElementById('addQ').value.trim();
@@ -600,18 +550,15 @@ document.getElementById('addQBtn').addEventListener('click', ()=>{
   const newQ = { id: Date.now(), category: cat, q: qtext, A:A, B:B, C:C, D:D, correct: correct };
   questions.push(newQ);
   save(KEY_Q, questions);
-  // clear inputs
   document.getElementById('addQ').value=''; document.getElementById('addA').value=''; document.getElementById('addB').value=''; document.getElementById('addC').value=''; document.getElementById('addD').value='';
   alert('Question added');
   renderAdminQuestions();
 });
 
-/* render students in admin */
 function renderAdminStudents(){
   const el = document.getElementById('adminStudents');
   el.innerHTML = '';
   if(students.length === 0){ el.innerHTML = '<div class="small">No student records</div>'; return; }
-  // sort latest first
   const sorted = students.slice().sort((a,b)=> new Date(b.date) - new Date(a.date));
   sorted.forEach(s=>{
     const row = document.createElement('div');
@@ -621,14 +568,12 @@ function renderAdminStudents(){
   });
 }
 
-/* reload questions button */
 document.getElementById('reloadQBtn').addEventListener('click', ()=> {
   questions = load(KEY_Q, defaultQuestions);
   renderAdminQuestions();
   alert('Refreshed from localStorage');
 });
 
-/* reset students (wipe names + scores) */
 document.getElementById('resetStudentsBtn').addEventListener('click', ()=>{
   if(!confirm('This will wipe ALL student records (names and scores). Continue?')) return;
   students = [];
@@ -637,7 +582,6 @@ document.getElementById('resetStudentsBtn').addEventListener('click', ()=>{
   alert('Student records cleared');
 });
 
-/* export students JSON */
 document.getElementById('exportBtn').addEventListener('click', ()=>{
   const data = JSON.stringify(students, null, 2);
   const blob = new Blob([data], { type:'application/json' });
@@ -647,31 +591,24 @@ document.getElementById('exportBtn').addEventListener('click', ()=>{
   URL.revokeObjectURL(url);
 });
 
-/* remove question helper (global) */
 function removeQuestionById(id){ removeQuestion(id); }
 
-/* render admin students on page load */
-function renderStudentListOnHome(){ /* optional: could show top 3 */ }
+function renderStudentListOnHome(){}
 
-/* ---------- init ---------- */
 function init(){
-  // init storage if empty
   if(!localStorage.getItem(KEY_Q)) save(KEY_Q, defaultQuestions);
   if(!localStorage.getItem(KEY_S)) save(KEY_S, []);
   questions = load(KEY_Q, defaultQuestions);
   students = load(KEY_S, []);
-  // apply theme saved
   applyTheme(localStorage.getItem(KEY_THEME) || 'default');
 }
 init();
 
-/* show admin page when settings Admin is clicked */
 document.getElementById('openAdminFromSettings').addEventListener('click', ()=> {
   settingsPanel.style.display = 'none';
   showPage('admin');
 });
 
-/* convenience: open settings when pressing gear quickly */
 document.getElementById('settingsToggle').addEventListener('dblclick', ()=> {
   settingsPanel.style.display = 'block';
 });
